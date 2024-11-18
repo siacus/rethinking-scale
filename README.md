@@ -6,7 +6,9 @@ Supplementary material for Rethinking Scale: The Efficacy of Fine-Tuned Open-Sou
 
 Setup [conda](https://docs.anaconda.com/miniconda/)
 
-Then run these commands `conda create -n rethink python=3.10`
+Then run these commands 
+
+`conda create -n rethink python=3.10`
 
 `conda activate rethink`
 
