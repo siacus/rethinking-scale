@@ -28,6 +28,6 @@ Run these python scripts to generate inference for the differet models. Each mod
 4. [test-plain-13B.py](test-plain-13B.py) : generates [classification_results-13B-NO-FT.csv](classification_results-13B-NO-FT.csv)
 5. [test-plain-70B.py](test-plain-70B.py) : generates [classification_results-70B-NO-FT.csv](classification_results-70B-NO-FT.csv)
 
-# Summary
+# Summary statistics
 Summary statistics can be obtained executing this R script: [createStats.R](createStats.R)
 
