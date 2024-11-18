@@ -55,5 +55,5 @@ and on the M2 Ultra (or the CUDA GPUs) quantize to 4bit:
 
 In our experience it turned out that it was important to get the all up-to-date version of llama.cpp before quantizing. 
 
-It is also very important to quantize to 4bit on the architecture you are going to run the inference, i.e., mode the F16 file to M2 Ultra and quantize to 4bit or do all on CUDA GPUs. Do note quantize to 4bit on
-CUDA and move the 4bit-qauntized GGUF to M2 Ultra, results can be a disaster!!!
+It is also very important to quantize to 4bit on the architecture you are going to run the inference, i.e., move the F16 GGUF file to M2 Ultra machine and quantize it there to 4bit, or do everything on CUDA GPUs. Do note mix up architectures: i.e., quantize to 4bit on CUDA and use the 4bit-qauntized GGUF on a M2 Ultra. Results can be a disaster!!!
+
