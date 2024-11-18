@@ -1,4 +1,4 @@
-# Fine-tuning LLAMA2-7B on cap_verified data
+# Fine-tuning LLAMA2-7B on cap_verified-final-and-last data
 # (S.M.Iacus 2024)
 
 from huggingface_hub import HfApi, HfFolder
@@ -17,7 +17,7 @@ from accelerate import Accelerator
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score, classification_report
 
 # Initialize the accelerator
-accelerator = Accelerator() 
+accelerator = Accelerator()  
 
 print("Number of GPUs:", torch.cuda.device_count())
 
@@ -36,7 +36,7 @@ max_length = 1024
 wandb.init(
     project="cap",
     reinit=True,
-    name="llama-2-7b-cap_verified",
+    name="llama-2-7b-cap_verified-final-and-last",
     config={
         "learning_rate": learning_rate,
         "num_train_epochs": num_train_epochs,
@@ -50,12 +50,10 @@ wandb.init(
 )
 
 
-
-
 # Model and dataset
 base_model = "meta-llama/Llama-2-7b-chat-hf" 
-cap_dataset = "siacus/cap_pe_verified"
-new_model = "siacus/llama-2-7b-cap_verified"
+cap_dataset = "siacus/cap_pe_verified-final-and-last"
+new_model = "siacus/llama-2-7b-cap_verified-final-and-last"
 
 dataset = load_dataset(cap_dataset, split={'train': 'train', 'test': 'test'})
 
