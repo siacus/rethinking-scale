@@ -1,5 +1,6 @@
 # This script is used to mere the weights after fine-tuning
 # (S.M.Iacus 2024)
+
 # This script requires enough memory to load the models
 # The example works for the "llama-2-7b-small-dv" model but
 # all the other models have been merged similarly
