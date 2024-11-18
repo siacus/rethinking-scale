@@ -13,31 +13,21 @@ import pandas as pd
 from tqdm import tqdm
 
 
+# We use the quantized version and save it locally
+# "TheBloke/llama-2-7b-chat.q4_K_M.gguf" 
+# download it as follows
+# huggingface-cli download TheBloke/Llama-2-7B-chat-GGUF llama-2-7b-chat.Q4_K_M.gguf --local-dir . --local-dir-use-symlinks False
 
-
-
-
-#base_model = "TheBloke/llama-2-13b-chat.q4_K_M.gguf" #"meta-llama/Llama-2-7b-chat-hf" #"NousResearch/Llama-2-7b-chat-hf"
-#hf_user = 'siacus' # replace with yours
-#new_model_name = "llama-2-7b-small-dv" # replace with the one you like
-#new_model = hf_user + '/' + new_model_name
 
 ctx_window = 2048 # in on-line we should probably make it adaptive
 # Create an instance of Llama to load the model
-# model_path - The model we want to load
 model = Llama(
     model_path = 'llama-2-7b-chat.q4_K_M.gguf',
-#    model_path= hf_user + '/' + new_model_name + "-Q4_K_M.gguf",  
     n_ctx = ctx_window,
-    n_gpu_layers = -1,
+    n_gpu_layers = -1, # this is on Metal to load on GPU
 )
 
-
-
-
 cap_dataset = "siacus/dv_subject"
-
-
 
 dataset = load_dataset(cap_dataset, split={'train': 'train', 'test': 'test'})
 
