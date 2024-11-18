@@ -7,13 +7,6 @@ api = HfApi()
 api.whoami()  # This should print your user info
 
 
-
-from huggingface_hub import HfApi, HfFolder
-#HfFolder.save_token("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")
-api = HfApi()
-api.whoami()  # This should print your user info
-
-
 import os
 import torch
 from datasets import load_dataset

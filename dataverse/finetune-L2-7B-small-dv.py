@@ -18,7 +18,7 @@ from accelerate import Accelerator
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score, classification_report
 
 # Initialize the accelerator
-accelerator = Accelerator() #device_placement=True)
+accelerator = Accelerator() 
 
 print("Number of GPUs:", torch.cuda.device_count())
 
