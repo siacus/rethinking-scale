@@ -1,8 +1,8 @@
 
-# pip install llama-cpp-python
-# https://www.gdcorner.com/blog/2024/06/12/NoBSIntroToLLMs-1-GettingStarted.html
+# tests performance of fine-tuning 
+# (S.M.Iacus 2024)
+
 from llama_cpp import Llama
-# We'll use pprint to more clearly look at the output
 from pprint import pprint
 from datasets import load_dataset
 import re
@@ -10,9 +10,8 @@ import pandas as pd
 from tqdm import tqdm
 
 # Create an instance of Llama to load the model
-# model_path - The model we want to load
 llm = Llama(
-    model_path="../models/llama-2-7b-cap_verified-last-and-final-Q4_K_M.gguf",
+    model_path="llama-2-7b-cap_verified-last-and-final-Q4_K_M.gguf",
     n_ctx = 2048,
     n_gpu_layers = -1,
 )

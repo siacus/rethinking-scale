@@ -8,7 +8,7 @@ The version of the fine-tuned models in GGUF format in both F16 and 4bit version
 # Fine-tuning
 These python scripts perform the training for the LLAMA2 model
 1. [finetune-L2-7B_verified.py](finetune-L2-7B_verified.py)
-2. []()
+2. [finetune-L2-7B_verified-final-and-last.py](finetune-L2-7B_verified-final-and-last.py)
 
 # Prompt used
 The prompt for the fine-tuning is simple and only make use of the  parliamentary quesiton. The fine-tuned model is supposed to answer only a number in squared brackets as in the following example:
@@ -22,5 +22,5 @@ Run these python scripts to generate inference for the differet models. Each mod
 2. [test-L2-7B-CAP_verified-last-and-final.py](test-L2-7B-CAP_verified-last-and-final.py) : generates [classification_train-L2-7B-cap-verified-last-and-final.csv](classification_train-L2-7B-cap-verified-last-and-final.csv) and [classification_test-L2-7B-cap-verified-last-and-final.csv](classification_test-L2-7B-cap-verified-last-and-final.csv)
 
 # Summary statistics
-Summary statistics can be obtained executing this R script: []()
+Summary statistics can be obtained executing this R script: [summaryStat.R](summaryStat.R)
 
