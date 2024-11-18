@@ -1,5 +1,5 @@
 # Rethinking Scale
-Supplementary material for Rethinking Scale: The Efficacy of Fine-Tuned Open-Source LLMs in Large-Scale Reproducible Social Science Research
+Supplementary material for [Rethinking Scale: The Efficacy of Fine-Tuned Open-Source LLMs in Large-Scale Reproducible Social Science Research](https://arxiv.org/abs/2411.00890)
 
 
 # System configuration
