@@ -24,3 +24,10 @@ Run these python scripts to generate inference for the differet models. Each mod
 # Summary statistics
 Summary statistics can be obtained executing this R script: [summaryStat.R](summaryStat.R)
 
+# Prompting ChatGPT
+This R script [askGPT-CAP.R](askGPT-CAP.R) performs the preliminary training set construction using ChatGPT4 using different prompting. The script relies on these data:
+
+1. [cap_codebook.xlsx](cap_codebook.xlsx) : the CAP codebook
+2. [cap_training_set.xlsx](cap_training_set.xlsx) : the unlabeled CAP data needed to generate the training set
+
+
