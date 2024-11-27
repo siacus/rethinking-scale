@@ -1,33 +1,83 @@
 # Human Flourishing
-The data used to train the model are on Huggingface under [siacus/dv_subject](https://huggingface.co/datasets/siacus/dv_subject)
+The models and data used to train and test the different LLAMA models are contained in this directory.
+All base omdels should be downloaded locally to run the scripts.
 
-The `small-dv` version of the fine-tuned model works on a training-set of 5,000 randomly sampled data.
+# Base models
+For the base LLAMA2 models we rely on these GGUF quantized versions:
 
-The large version works on the whole 76.1K training records.
+1. [LLAMA-2-7B](https://huggingface.co/TheBloke/Llama-2-7B-GGUF) : download model `llama-2-7b-chat.Q4_K_M.gguf`
+2. [LLAMA-2-13B](https://huggingface.co/TheBloke/Llama-2-13B-GGUF) : download model `llama-2-13b-chat.Q4_K_M.gguf`
+3. [LLAMA-2-70B](https://huggingface.co/TheBloke/Llama-2-70B-GGUF) : download model `llama-2-70b-chat.Q4_K_M.gguf`
 
-The test set is of size 32.6K rows.
+For the base LLAMA3 models we rely on these GGUF quantized versions:
 
-The two versions of the fine-tuned models in GGUF format in both F16 and 4bit versions can be obtained from Hugginface: [llama-2-7b-small-dv](https://huggingface.co/siacus/llama-2-7b-small-dv) and [llama-2-7b-dv](https://huggingface.co/siacus/llama-2-7b-dv)
+4. [LLAMA-3-8B](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct) : download model `Meta-Llama-3-8B-Instruct.Q4_K_M.gguf`
+5. [LLAMA-3-70B](https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct) : download model `Meta-Llama-3-70B-Instruct.Q5_K_M.gguf`
+
+For the base LLAMA3.1 models we rely on these GGUF quantized versions:
+
+6. [LLAMA-3.1-405B](https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct) : download model `Meta-Llama-3.1-405B-Instruct`
+
+For the base LLAMA3.2 models we rely on these GGUF quantized versions:
+
+7. [LLAMA-3.2-1B](https://huggingface.co/jxtngx/Meta-Llama-3.2-1B-Instruct-Q4_K_M-GGUF) : download model `Llama-32-1B-Q4_K_M.gguf`
+8. [LLAMA-3.2-3B](https://huggingface.co/jxtngx/Meta-Llama-3.2-3B-Instruct-Q4_K_M-GGUF) : download model `Llama-32-3B-Q4_K_M.gguf`
+
 
 # Fine-tuning
-These python scripts perform the training for the LLAMA2 model
-1. [finetune-L2-7B-small-dv.py](finetune-L2-7B-small-dv.py)
-2. [finetune-L2-7B-dv.py](finetune-L2-7B-dv.py)
+These python scripts perform the training for the LLAMA-2 and LLAMA-3 models. We only produce one example per family of models.
+
+1. [finetune-L2-13B.py](finetune-L2-13B.py) : fine-tuning LLAMA-2 models
+2. [finetune-L32-3B.py](finetune-L32-3B.py) : fine-tuning LLAMA-3 models
 
 # Prompt used
-The prompt here is composed of the Title and the Description of the dataset. The fine-tuned model is supposed to answer using a json list like in the following example:
+The prompt is splitted into four similar prompts and each tweets is analyzed four times, to keep the number of dimensions reasonable. The next is a template prompt used in LLAMA-3 models:
 
-`<s>[INST] Here are Title and Description of a dataset. Title :'A15_29234.jpg' Description:'Link to OCHRE database: <a href = 'http://pi.lib.uchicago.edu/1001/org/ochre/526ee9d3-6b44-44b9-b407-adebe96fcf82'>http://pi.lib.uchicago.edu/1001/org/ochre/526ee9d3-6b44-44b9-b407-adebe96fcf82'. And this are subject categories: ['Medicine, Health and Life Sciences','Arts and Humanities','Computer and Information Science','Social Sciences','Mathematical Sciences','Physics','Earth and Environmental Sciences','Chemistry','Engineering','Other','Law','Business and Management','Astronomy and Astrophysics','Agricultural Sciences']. Please return only a json list of at most 3 elements corresponding to the text labels:[/INST] ['Arts and Humanities']. </s>`
+`template1 = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|> {instruction1} <|eot_id|><|start_header_id|>user<|end_header_id|>
+    Here is the text: \n\n {{text}} \n Please, return a JSON dictionary = <|eot_id|><|start_header_id|>assistant<|end_header_id|>
+"""
+`
+
+The human flourishing dimensions:
+
+`dims1 ="""[Happiness, Resilience, Self-esteem, Life satisfaction, Fear of future, Vitality, Having energy, Positive functioning, Expressing job satisfaction, Expressing optimism, Peace with thoughts and feelings, Purpose in life, Depression, Anxiety, Suffering, Feeling pain]"""`
+
+`dims2 ="""[Expressing altruism, Loneliness, Quality of relationships, Belonging to society, Expressing gratitude, Expressing trust, Feeling trusted, Balance in the various aspects of own life, Mastery (ability or capability), Perceiving discrimination, Feeling loved by God, Belief in God, Religious criticism, Spiritual punishment, Feeling religious comfort]"""`
+
+`dims3 ="""[Financial or material worry, Life after death belief, Volunteering, Charitable giving/helping, Seeking for forgiveness, Feeling having a political voice, Expressing government approval, Having hope, Promoting good, Expressing delayed gratification]"""`
+
+`dims4 ="""[PTSD (Post-traumatic stress disorder), Describing smoking related health issues, Describing drinking related health issues, Describing health limitations, Expressing empathy]"""`
+
+# Datasets
+Datasets have been stored to Huggingface. We have two versions that include prompting:
+
+1. [siacus/tweets](https://huggingface.co/datasets/siacus/tweets) : for traiing LLAMA-2 models
+
+2. [siacus/train-llama3](https://huggingface.co/datasets/siacus/train-llama3) : for traiing LLAMA-3 models
+
+And the original data used to generate the training sets are in [here](sample.csv).
+
+
+
+# Fine-tuned models 
+The fine-tuned models can be obtained on request due to their large size. More models will be added in the future if space on Huggingface will allow for this. 
+Here we point to the best among the fine-tuned models that is stored on Huggingface which is the [LLAMA-7B parameter model](https://huggingface.co/siacus/llama2-7B-swb-FT-Q4_K_M.gguf).
+
+
 
 # Inference
-Run these python scripts to generate inference for the differet models. Each model produces a .csv file with the classification.
+Run these python scripts to generate inference for the differet models. Each model produces a .csv file with the classification. Here we report two examples for the the two families of models.
 
-1. [test-dv.py](test-dv.py) : generates [classification_results-llama-2-7b-dv.csv](classification_results-llama-2-7b-dv.csv)
-2. [test-small-dv.py](test-small-dv.py) : generates [classification_results-llama-2-7b-small-dv.csv](classification_results-llama-2-7b-small-dv.csv)
-3. [test-plain-7B.py](test-plain-7B.py) : generates [classification_results-7B-NO-FT.csv](classification_results-7B-NO-FT.csv)
-4. [test-plain-13B.py](test-plain-13B.py) : generates [classification_results-13B-NO-FT.csv](classification_results-13B-NO-FT.csv)
-5. [test-plain-70B.py](test-plain-70B.py) : generates [classification_results-70B-NO-FT.csv](classification_results-70B-NO-FT.csv)
+1. [classify-L2-7B.py](classify-L2-7B.py) : generates [classified-L2-7B.csv](classified-L2-7B.csv)
+
+2. [classify-L32-3B.py](classify-L32-3B.py) : generates [classified-L2-7B.csv](classified-L32-3B.csv)
+
+`add example scripts of classification with FT models`
+
+# Analysis
+`add scripts for data analysis`
 
 # Summary statistics
+`change this with the actual script`
 Summary statistics can be obtained executing this R script: [createStats.R](createStats.R)
 
