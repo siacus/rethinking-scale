@@ -1,6 +1,9 @@
 # Tweets classifier using LLAMA-3.2-3B
 # (S.M.Iacus 2024)
 
+# this version runs on Apple Metal
+# change to your device accordingly
+
 output_csv = 'classified-L32-3B.csv'
 
 

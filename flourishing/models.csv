@@ -1,0 +1,19 @@
+FT, MODEL, BPAR, fname, note
+NO, LLAMA2, 7, classified-L2-7B, L2-7B
+YES, LLAMA2, 7, classified-L2-7B-FT, L2-7B FT
+NO, LLAMA2, 13, classified-L2-13B, L2-13B 
+YES, LLAMA2, 13, classified-L2-13B-FT, L2-13B FT
+NO, LLAMA2, 70, classified-L2-70B, L2-70B
+YES, LLAMA2, 70, classified-L2-70B-FT, L2-70B FT
+NO, LLAMA3, 8, classified-L3-8B, L3-8B
+YES, LLAMA3, 8, classified-L3-8B-FT, L3-8B FT
+NO, LLAMA3, 70, classified-L3-70B, L3-70B
+YES, LLAMA3, 70, classified-L3-70B-FT, L3-70B FT
+NO, LLAMA31, 8, classified-L31-8B, L3.1-8B
+NO, LLAMA31, 70, classified-L31-70B, L3.1-70B
+NO, LLAMA31, 405, classified-L31-405B, L3.1-405B
+NO, LLAMA32, 1, classified-L32-1B, L32-1B
+YES, LLAMA32, 1, classified-L32-1B-FT, L32-1B FT
+NO, LLAMA32, 3, classified-L32-3B, L32-3B
+YES, LLAMA32, 3, classified-L32-3B-FT, L32-3B FT
+NO, GPT4, 1760, classified-chatgpt4, GPT4 (220*8) B

@@ -48,6 +48,10 @@ The human flourishing dimensions:
 
 `dims4 ="""[PTSD (Post-traumatic stress disorder), Describing smoking related health issues, Describing drinking related health issues, Describing health limitations, Expressing empathy]"""`
 
+Example of template for the LLAMA-2 models:
+
+
+
 # Datasets
 Datasets have been stored to Huggingface. We have two versions that include prompting:
 
@@ -55,27 +59,34 @@ Datasets have been stored to Huggingface. We have two versions that include prom
 
 2. [siacus/train-llama3](https://huggingface.co/datasets/siacus/train-llama3) : for traiing LLAMA-3 models
 
-And the original data used to generate the training sets are in [here](sample.csv).
+And the original data used to generate the training sets are in [here](sample.csv) and the test set data are [here](answers.csv).
+
+3. [generate-L2-trainingset.py](generate-L2-trainingset.py) : creates the dataset `siacus/tweets` on Huggingface with training set and test set splits for LLAMA-2 models
+
+4. [generate-L3-trainingset.py](generate-L3-trainingset.py) : creates the dataset `siacus/train-llama3` on Huggingface with training set and test set splits for LLAMA-3 models
 
 
 
 # Fine-tuned models 
-The fine-tuned models can be obtained on request due to their large size. More models will be added in the future if space on Huggingface will allow for this. 
-Here we point to the best among the fine-tuned models that is stored on Huggingface which is the [LLAMA-7B parameter model](https://huggingface.co/siacus/llama2-7B-swb-FT-Q4_K_M.gguf).
+The fine-tuned models can be obtained on request. Due to their large size (and lower accuracy) we do not redistribute them on Huggingface. More models will be added in the future if space on Huggingface will allow for this. 
+Here we point the user to the best among the fine-tuned models. The model is stored on Huggingface as [LLAMA-7B parameter model](https://huggingface.co/siacus/llama2-7B-swb-FT-Q4_K_M.gguf).
 
 
 
 # Inference
 Run these python scripts to generate inference for the differet models. Each model produces a .csv file with the classification. Here we report two examples for the the two families of models.
 
-1. [classify-L2-7B.py](classify-L2-7B.py) : generates [classified-L2-7B.csv](classified-L2-7B.csv)
+1. [classify-L2-7B.py](classify-L2-7B.py) : generates [classified-L2-7B.csv](classified-L2-7B.csv) unsing the LLAMA-2-7B base model
 
-2. [classify-L32-3B.py](classify-L32-3B.py) : generates [classified-L2-7B.csv](classified-L32-3B.csv)
+2. [classify-L32-3B.py](classify-L32-3B.py) : generates [classified-L2-7B.csv](classified-L32-3B.csv) using the LLAMA-3.2-8B base model
 
-`add example scripts of classification with FT models`
+3. [classify-L2-7B-FT.py](classify-L2-7B-FT.py) : generates [re-classified-test.csv](re-classified-test.csv) using the fine-tuned model
+
 
 # Analysis
-`add scripts for data analysis`
+The file [models.csv](models.csv) contain the list of model names, their parameters and classification output used to generate the tables in the manuscript.
+
+
 
 # Summary statistics
 `change this with the actual script`
