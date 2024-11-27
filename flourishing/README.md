@@ -83,12 +83,18 @@ Run these python scripts to generate inference for the differet models. Each mod
 3. [classify-L2-7B-FT.py](classify-L2-7B-FT.py) : generates [re-classified-test.csv](re-classified-test.csv) using the fine-tuned model
 
 
-# Analysis
+# Analysis & Summary Statistics
 The file [models.csv](models.csv) contain the list of model names, their parameters and classification output used to generate the tables in the manuscript.
 
+The following files perform the analysis of the results:
+
+1. [verify-classification.R](verify-classification.R) : analysis of the performance on the training set
+
+2. [verify-test.R](verify-test.R) : analysis of the performance on the test set
+
+3. [plots.R](plots.R) : the wonderful plots of the paper
 
 
-# Summary statistics
-`change this with the actual script`
-Summary statistics can be obtained executing this R script: [createStats.R](createStats.R)
+# Codebook
+The codebook used to classify the tweets according to 46 dimensions of the [Human Flourishing Program](https://hfh.fas.harvard.edu) is [here](Codebook.pdf).
 
