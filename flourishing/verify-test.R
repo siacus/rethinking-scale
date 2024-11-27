@@ -56,7 +56,7 @@ files_to_delete <- list.files(pattern = "^summ7-.*")
 file.remove(files_to_delete)
 
 removeLow <- FALSE
-removeBeppe <- FALSE
+
 
 library(data.table)
 true <- fread("verified.csv", colClasses = 'character'  )
@@ -140,10 +140,6 @@ if(removeLow){
     }
 }
 
-if(removeBeppe){
-    idx <- which(as.integer(true$coder)<=10)
-    true <- true[idx,]
-}
 
 
 
@@ -172,11 +168,6 @@ for(modNum in 1:nmod){
             dt <- dt[-dtlows,]
         }
     }
-    if(removeBeppe){
-       idx <- which(as.integer(dt$coder)<=10)
-        dt <- dt[idx,]
-    }
-    #dt <- true
 
     common_ids <- intersect(true$id[true$accepted=="1"],classified$id)
     if(length(common_ids)>0){
@@ -395,6 +386,8 @@ l <- lapply(files, fread, sep=",")
 dt <- rbindlist( l )
 
 write.csv(dt, file="verifyOld.csv", row.names= FALSE)
+files_to_delete <- list.files(pattern = "^summ7-.*")
+file.remove(files_to_delete)
 
 
 files2 <- list.files(path = ".",pattern = "stats7-")
@@ -403,4 +396,6 @@ l2 <- lapply(files2, fread, sep=",")
 dt2 <- rbindlist( l2 )
 
 write.csv(dt2, file="verifyStatsOld.csv", row.names= FALSE)
+files_to_delete <- list.files(pattern = "^stats7-.*")
+file.remove(files_to_delete)
 

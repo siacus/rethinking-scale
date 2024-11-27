@@ -132,3 +132,4 @@ pHamT <- ggplot(y, aes(x=bpar, y=ham,colour = mtype)) +
 pHam+pHamT+plot_layout(guides = "collect")
 
 
+

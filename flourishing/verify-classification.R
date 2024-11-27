@@ -55,7 +55,6 @@ files_to_delete <- list.files(pattern = "^summ8-.*")
 file.remove(files_to_delete)
 
 removeLow <- FALSE
-removeBeppe <- FALSE
 FNW <- 0.1
 
 library(data.table)
@@ -143,10 +142,6 @@ if(removeLow){
     }
 }
 
-if(removeBeppe){
-    idx <- which(as.integer(true$coder)<=10)
-    true <- true[idx,]
-}
 
 
 models <- fread("models.csv", sep=',')
@@ -174,11 +169,6 @@ for(modNum in 1:nmod){
             dt <- dt[-dtlows,]
         }
     }
-    if(removeBeppe){
-       idx <- which(as.integer(dt$coder)<=10)
-        dt <- dt[idx,]
-    }
-    #dt <- true
 
     common_ids <- intersect(true$id[true$accepted=="1"],classified$id)
     if(length(common_ids)>0){
@@ -383,7 +373,6 @@ for(modNum in 1:nmod){
     cat(sprintf("\nJaccard index 2: %.1f\n", mean(jac2)))
     cat(sprintf("\nHamming loss: %.1f\n======================================\n\n", mean(ham)))
 
-  #  write.csv(summ, file=sprintf("summ7-%s.csv",fname), row.names=FALSE)
     write.csv(summ, file=sprintf("summ8-%s.csv",fname), row.names=FALSE)
     write.csv(summ2, file=sprintf("stats8-%s.csv",fname), row.names=FALSE)
   
@@ -401,6 +390,8 @@ l <- lapply(files, fread, sep=",")
 dt <- rbindlist( l )
 
 write.csv(dt, file="summaryOld.csv", row.names= FALSE)
+files_to_delete <- list.files(pattern = "^summ8-.*")
+file.remove(files_to_delete)
 
 
 files2 <- list.files(path = ".",pattern = "stats8-")
@@ -409,4 +400,6 @@ l2 <- lapply(files2, fread, sep=",")
 dt2 <- rbindlist( l2 )
 
 write.csv(dt2, file="summaryStatsOld.csv", row.names= FALSE)
+files_to_delete <- list.files(pattern = "^stats8-.*")
+file.remove(files_to_delete)
 
